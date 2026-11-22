@@ -15,3 +15,7 @@ gcc main.c -o main
 Enter the target node to find its ancestors: 4
 Ancestors of node 4 are: 2 1
 ```
+## Time Complexity
+
+- Time: O(n), because every node may be visited once
+- Space: O(h), where h is the height of the tree (recursion stack)
