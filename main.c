@@ -16,7 +16,7 @@ struct Node* newNode(int data) {
     return node;
 }
 
-// Function to print ancestors
+// Print all ancestors of the target node (returns 1 if target is found)
 int printAncestors(struct Node* root, int target) {
     if (root == NULL)
         return 0;
@@ -24,12 +24,22 @@ int printAncestors(struct Node* root, int target) {
     if (root->data == target)
         return 1;
 
+    // If target is in left or right subtree, current node is an ancestor
     if (printAncestors(root->left, target) ||
         printAncestors(root->right, target)) {
         printf("%d ", root->data);
         return 1;
     }
     return 0;
+}
+
+// Free all nodes of the tree
+void freeTree(struct Node* root) {
+    if (root == NULL)
+        return;
+    freeTree(root->left);
+    freeTree(root->right);
+    free(root);
 }
 
 int main() {
@@ -55,5 +65,6 @@ int main() {
         printf("Node not found in the tree.");
     }
 
+    freeTree(root);
     return 0;
 }
